@@ -108,9 +108,17 @@
         .content-inactive {
             display: none;
         }
-        .resource-card {
-            margin: 0 29% 2rem 1%;
-            width: 70%;
+        @media screen and (min-width: 15cm) {
+            .resource-card {
+                margin: 0 29% 2rem 1%;
+                width: 70%;
+            }
+        }
+        @media screen and (max-width: 15cm) {
+            .resource-card {
+                margin: 0 5% 2rem 5%;
+                width: 90%;
+            }
         }
         .resource-card h5 {
             text-transform: capitalize;
@@ -125,8 +133,12 @@
             list-style-type: disc;
         }
         #content-about {
-            width: 45rem;
-            /*margin: 0 60vw 0 0vw;*/
+            margin-right: 2rem;
+        }
+        @media screen and (min-width: 50rem) {
+            #content-about {
+                max-width: 48rem;
+            }
         }
         #content-about h3 {
             margin-bottom: 3rem;
@@ -219,10 +231,11 @@
                 <p class="card-text">
                     <ul class="list-group">
                         <li class="list-group-item">Worldwide Secular Meetings:
-                            <a href="https://www.worldwidesecularmeetings.com/meetings">https://www.worldwidesecularmeetings.com/meetings</a></li>
-                        <li class="list-group-item">Worldwide Secular Meetings, spreadsheet version:
-                            <a href="https://bit.ly/secular-meetings-online">https://bit.ly/secular-meetings-online</a>
-                            (<a href="https://docs.google.com/spreadsheets/d/1AuWy7FKCG-R_pyRZzEjFXkH-Rw_0VEzi/edit?pli=1#gid=656871302">original link</a>)</li>
+                            <a href="https://www.worldwidesecularmeetings.com/meetings"
+                                    >https://www.worldwidesecularmeetings.com/meetings</a>
+                            (<a href="https://bit.ly/secular-meetings-online"
+                                >spreadsheet version</a>,
+                            <a href="https://docs.google.com/spreadsheets/d/1AuWy7FKCG-R_pyRZzEjFXkH-Rw_0VEzi/edit?pli=1#gid=656871302">original link</a>)</li>
                         <li class="list-group-item">San Francisco-Marin Central Office Meetings List:
                             <a href="https://aasfmarin.org/meetings">https://aasfmarin.org/meetings</a></li>
                         <li class="list-group-item">The Secular Recovery Group:
@@ -239,6 +252,11 @@
                 <h5 class="card-title mb-1">Some helpful online resources from Alcoholics Anonymous</h5>
                 <p class="card-text">
                     <ul class="list-group">
+                        <li class="list-group-item">"Living Sober" a mostly secular guidebook, free online:
+                            <a href="https://www.aa.org/pages/en_US/living-sober-pdf-format"
+                                   >https://www.aa.org/pages/en_US/living-sober-pdf-format</a>
+                            (<a href="https://www.8n8aa.com/wp-content/uploads/2020/06/Living-Sober.pdf">complete PDF version</a>)
+                        </li>
                         <li class="list-group-item">Living Sober by AA World Services can be read by PDF: <a href="https://www.aa.org/pages/en_US/living-sober-pdf-format">https://www.aa.org/pages/en_US/living-sober-pdf-format</a></li>
                         <li class="list-group-item">A Newcomer Asks (pamphlet): <a href="https://www.aa.org/assets/en_US/p-24_anewcomerask.pdf">https://www.aa.org/assets/en_US/p-24_anewcomerask.pdf</a></li>
                         <li class="list-group-item">Is AA for Me? <a href="https://www.aa.org/assets/en_us/p-3_isaaforyou.pdf">https://www.aa.org/assets/en_us/p-3_isaaforyou.pdf</a></li>
