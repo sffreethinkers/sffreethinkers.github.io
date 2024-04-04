@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" crossorigin="anonymous"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN">
+    <style>
+        @media screen and (width >= 725px) {
+            .header, .row {
+                display: grid;
+                grid-template-columns: 75px 100px 75px 150px 75px 250px;
+                grid-auto-flow: row;
+            }
+        }
+        @media screen and (width < 725px) {
+            .header, .row {
+                display: grid;
+                width: 100%;
+                /*grid-template-columns: 75px 100px 75px 150px 75px 250px;*/
+                grid-auto-flow: dense;
+            }
+        }
+        .header, .row {
+            text-align: left;
+        }
+        div {
+            border: solid purple 1pt;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header row">
+            <div class="">Col 1</div>
+            <div class="">Col 2</div>
+            <div class="">Col 1</div>
+            <div class="">Col 3</div>
+            <div class="">Col 1</div>
+            <div class="">Col 5</div>
+        </div>
+        <div class="row">
+            <div class="">Val 1</div>
+            <div class="">Val 2</div>
+            <div class="">Val 1</div>
+            <div class="">Val 3</div>
+            <div class="">Val 1</div>
+            <div class="">Val 5</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -11,16 +11,11 @@
     <style>
         body {
             font-size: 18px;
-        }
-
-        .container.main {
-            min-width: 90vw;
-            margin-left: 5vw;
-            margin-right: 5vw;
+            grid-auto-flow: column;
         }
 
         .day, .time, .passcode, .meeting_no {
-            text-align: center;
+            text-align: left;
         }
 
         div.sched {
@@ -135,7 +130,7 @@
         #content-about {
             margin-right: 2rem;
         }
-        @media screen and (min-width: 50rem) {
+/*        @media screen and (min-width: 50rem) {
             #content-about {
                 max-width: 48rem;
             }
@@ -144,14 +139,73 @@
             #twb {
                 width: 80vw;
             }
-        }
+        }*/
         #content-about h3 {
             margin-bottom: 3rem;
+        }
+        div {
+            border: solid green 1pt;
+        }
+        .day {
+            width: 8rem;
+            /*margin-right: 12rem;*/
+        }
+        .meeting {
+            width: 21em;
+        }
+        .time {
+            width: 7rem;
+        }
+        .link {
+            width: 25rem;
+        }
+        .location {
+            width: 41rem;
+        }
+        .passcode {
+            width: 6rem;
+        }
+        .meeting_no {
+            width: 10rem;
+        }
+        @media screen and (width >= 50rem) {
+            .row {
+                /*display: grid;*/
+                grid-template-columns: 8rem 20rem 7rem 25rem 41rem 6rem 10rem;
+                grid-auto-flow: row;
+                display: compact;
+
+            }
+            .day, .meeting, .time, .link, .location, .passcode, .meeting_no {
+                /*display: inline;*/
+            }
+            .container.main {
+                min-width: 90vw;
+                margin-left: 5vw;
+                margin-right: 5vw;
+            }
+        }
+        @media screen and (width < 50rem) {
+            .row {
+                display: grid;
+                /*grid-template-columns: 8rem 20rem 7rem 25rem 41rem 6rem 10rem;*/
+                grid-auto-flow: dense;
+            }
+            .day, .meeting, .time, .link, .location, .passcode, .meeting_no {
+                width: 100%;
+            }
+            .container.main {
+                min-width: 100vw;
+                margin-left: 0;
+                margin-right: 0;
+            }
         }
    </style>
 
     <script type="module">
 
+        const inactiveClass = 'content-inactive',
+              activeClass = 'content-active';
         const toggleTabContent = (tab, state) => {
             let docId;
             if (typeof tab === 'string') {
@@ -159,28 +213,31 @@
             } else {
                 docId = `#content-${tab.id.split('-')[1]}`;
             }
-            console.log("docId: ", docId);
-            const doc = document.querySelector(docId),
-                  oldClass = `content-${!state ? "active" : "inactive"}`,
-                  newClass = `content-${state ? "active" : "inactive"}`;
-            doc.classList.remove(oldClass);
-            doc.classList.add(newClass);
+            const doc = document.querySelector(docId);
+            if (state) {
+                doc.classList.remove (inactiveClass);
+                doc.classList.add (activeClass);
+            } else {
+                doc.classList.remove(activeClass);
+                doc.classList.add(inactiveClass);
+            }
         };
 
+        let tabs;
         const switchTabs = (clickedTab) => {
-            const tabs = new Array(...document.getElementsByClassName('nav-link'));
             tabs.forEach((tab, num) => {
-                if(tab.classList.contains('active') && tab !== clickedTab) {
-                    tab.classList.remove('active');
-                    toggleTabContent(tab, false);
-                }
-                tab.addEventListener ('click', () => switchTabs(tab));
+                tab.classList.remove('active');
+                toggleTabContent(tab, false);
             });
             clickedTab.classList.add('active');
             toggleTabContent(clickedTab, true);
         };
 
         window.addEventListener('DOMContentLoaded',function () {
+            tabs = new Array(...document.getElementsByClassName('nav-link'));
+            tabs.forEach((tab, num) =>
+                tab.addEventListener( 'click', () => switchTabs (tab) )
+            );
             switchTabs(document.querySelector('#tab-meetings'));
         });
     </script>
@@ -189,8 +246,8 @@
 
 <body>
 <div class="container main">
-    <div class="row">
-        <div class="col-md-12">
+    <div class="rowx">
+        <div class="col-md-12x">
             <h1>San Francisco & Bay Area Freethinkers: Atheist, Agnostic & Others - Meetings of Alcoholics Anonymous</h1>
         </div>
     </div>
@@ -244,9 +301,11 @@
                         <li class="list-group-item">San Francisco-Marin Central Office Meetings List:
                             <a href="https://aasfmarin.org/meetings">https://aasfmarin.org/meetings</a></li>
                         <li class="list-group-item">The Secular Recovery Group:
-                            <a href="https://secularrecoverygroup.org/more-zoom-meetings/">https://secularrecoverygroup.org/more-zoom-meetings/</a></li>
+                            <a href="https://secularrecoverygroup.org/more-zoom-meetings/"
+                                    >https://secularrecoverygroup.org/more-zoom-meetings/</a></li>
                         <li class="list-group-item">San Francisco Freethinkers & Bay Area Secular meetings:
-                            <a href="https://sffreethinkers.org/">https://sffreethinkers.org</a> (this site)</li>
+                            <a href="https://sffreethinkers.org/"
+                                    >https://sffreethinkers.org</a> (this site)</li>
                     </ul>
                 </p>
             </div>
@@ -262,12 +321,24 @@
                                    >https://www.aa.org/pages/en_US/living-sober-pdf-format</a>
                             (<a href="https://www.8n8aa.com/wp-content/uploads/2020/06/Living-Sober.pdf">complete PDF version</a>)
                         </li>
-                        <li class="list-group-item">Living Sober by AA World Services can be read by PDF: <a href="https://www.aa.org/pages/en_US/living-sober-pdf-format">https://www.aa.org/pages/en_US/living-sober-pdf-format</a></li>
-                        <li class="list-group-item">A Newcomer Asks (pamphlet): <a href="https://www.aa.org/assets/en_US/p-24_anewcomerask.pdf">https://www.aa.org/assets/en_US/p-24_anewcomerask.pdf</a></li>
-                        <li class="list-group-item">Is AA for Me? <a href="https://www.aa.org/assets/en_us/p-3_isaaforyou.pdf">https://www.aa.org/assets/en_us/p-3_isaaforyou.pdf</a></li>
-                        <li class="list-group-item">Atheists & Agnostics stories: <a href="https://www.aa.org/sites/default/files/literature/assets/p-86_theGodWord.pdf">https://www.aa.org/sites/default/files/literature/assets/p-86_theGodWord.pdf</a></li>
-                        <li class="list-group-item">Q&A Sponsorship: <a href="https://www.aa.org/assets/en_US/p-15_Q&AonSpon.pdf">https://www.aa.org/assets/en_US/p-15_Q&AonSpon.pdf</a></li>
-                        <li class="list-group-item">More on Safety in AA: <a href="https://www.aa.org/assets/en_us/f-211_SafetyCardforAAGroups.pdf">https://www.aa.org/assets/en_us/f-211_SafetyCardforAAGroups.pdf</a></li>
+                        <li class="list-group-item">Living Sober by AA World Services can be read by PDF:
+                            <a href="https://www.aa.org/pages/en_US/living-sober-pdf-format"
+                                    >https://www.aa.org/pages/en_US/living-sober-pdf-format</a></li>
+                        <li class="list-group-item">A Newcomer Asks (pamphlet):
+                            <a href="https://www.aa.org/assets/en_US/p-24_anewcomerask.pdf"
+                                    >https://www.aa.org/assets/en_US/p-24_anewcomerask.pdf</a></li>
+                        <li class="list-group-item">Is AA for Me?
+                            <a href="https://www.aa.org/assets/en_us/p-3_isaaforyou.pdf"
+                                    >https://www.aa.org/assets/en_us/p-3_isaaforyou.pdf</a></li>
+                        <li class="list-group-item">Atheists & Agnostics stories:
+                            <a href="https://www.aa.org/sites/default/files/literature/assets/p-86_theGodWord.pdf"
+                                    >https://www.aa.org/sites/default/files/literature/assets/p-86_theGodWord.pdf</a></li>
+                        <li class="list-group-item">Q&A Sponsorship:
+                            <a href="https://www.aa.org/assets/en_US/p-15_Q&AonSpon.pdf"
+                                    >https://www.aa.org/assets/en_US/p-15_Q&AonSpon.pdf</a></li>
+                        <li class="list-group-item">More on Safety in AA:
+                            <a href="https://www.aa.org/assets/en_us/f-211_SafetyCardforAAGroups.pdf"
+                                    >https://www.aa.org/assets/en_us/f-211_SafetyCardforAAGroups.pdf</a></li>
                     </ul>
                 </p>
             </div>
@@ -317,9 +388,10 @@
             and is a ten step version.
 
             More about The Forum AA Group at:
-            <a href="https://rebelliondogspublishing.com/blog/blog/musings-from-san-francisco-march-2019-rebellon-dogs-blog">
-                https://rebelliondogspublishing.com/blog/blog/musings-from-san-francisco-march-2019-rebellon-dogs-blog</a>
-            (PDF copy <a href="https://bzglfiles.s3.ca-central-1.amazonaws.com/u/63023/f45fd6d26ea042fe2326e5fc774e18cf8b516f01/original/rebellion-dogs-blog-march-2019-infatuation-irritability-inventiveness-insight.pdf?response-content-type=application%2Fpdf&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA2AEJH4L527DJJBYE%2F20240117%2Fca-central-1%2Fs3%2Faws4_request&X-Amz-Date=20240117T002416Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=424338df2ab201dd9efd1e259a66fff4b4ccf9c8986651d989e3127791d7286e">here</a>).
+            <a href="https://rebelliondogspublishing.com/blog/blog/musings-from-san-francisco-march-2019-rebellon-dogs-blog"
+                    >https://rebelliondogspublishing.com/blog/blog/musings-from-san-francisco-march-2019-rebellon-dogs-blog</a>
+            (PDF copy <a href="https://bzglfiles.s3.ca-central-1.amazonaws.com/u/63023/f45fd6d26ea042fe2326e5fc774e18cf8b516f01/original/rebellion-dogs-blog-march-2019-infatuation-irritability-inventiveness-insight.pdf?response-content-type=application%2Fpdf&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA2AEJH4L527DJJBYE%2F20240117%2Fca-central-1%2Fs3%2Faws4_request&X-Amz-Date=20240117T002416Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=424338df2ab201dd9efd1e259a66fff4b4ccf9c8986651d989e3127791d7286e"
+                              >here</a>).
         </p>
 
         <h3 style="margin-bottom: 1rem">History of Alcoholics Anonymous in San Francisco</h3>
@@ -395,8 +467,7 @@
             Note that this email account is not closely monitored.
             For best results, please visit one of our meetings.
         </p>
-
-f    </div>
+   </div>
 
     <div id="content-meetings" class="content-active">
         <div class="alert alert-info" role="alert">
@@ -405,116 +476,126 @@ f    </div>
         </div>
 
         <div class="row">
-            <div class="sched col-md-12">
+            <div class="sched ">
                 <div class="row hd">
-                    <div class="day col-sm-1">Day</div>
-                    <div class="col-sm-3 meeting">
+                    <div class="day ">Day</div>
+                    <div class="meeting">
                         Meeting
                     </div>
-                    <div class="time col-sm-1">Time&nbsp;(PST)</div>
-                    <div class="col-sm-4">Meeting Link</div>
-                    <div class="col-sm-1 passcode">Passcode</div>
-                    <div class="col-sm-1 meeting_no">Meeting #</div>
+                    <div class="time">Time&nbsp;(PST)</div>
+                    <div class="link">Meeting Link</div>
+                    <div class="passcode">Passcode</div>
+                    <div class="meeting_no">Meeting #</div>
                 </div>
                 <div class="row odd">
-                    <div class="col-sm-1 day">Sunday</div>
-                    <div class="col-sm-3 meeting">
+                    <div class="day">Sunday</div>
+                    <div class="meeting">
                         Step Study <img src="images/Golden Gate Bridge1.svg">
                     </div>
-                    <div class="col-sm-1 time">11:00 AM</div>
-                    <div class="col-sm-4 left"><a href="https://zoom.us/j/273766058">https://zoom.us/j/273766058</a></div>
-                    <div class="col-sm-1 passcode">219538</div>
-                    <div class="col-sm-1 meeting_no">273-766-058</div>
+                    <div class="time">11:00 AM</div>
+                    <div class="link"><a href="https://zoom.us/j/273766058">https://zoom.us/j/273766058</a></div>
+                    <div class="passcode">219538</div>
+                    <div class="meeting_no">273-766-058</div>
                 </div>
                 <div class="row even">
-                    <div class="col-sm-1 day">Sunday</div>
-                    <div class="col-sm-3 meeting">
+                    <div class="day">Sunday</div>
+                    <div class="meeting">
                         Agnostics and Freethinkers <img src="images/Golden Gate Bridge1.svg">
                     </div>
-                    <div class="col-sm-1 time">6:30 PM</div>
-                    <div class="col-sm-6 left"><a
+                    <div class="time">6:30 PM</div>
+                    <div class="location"><a
                             href="https://aasfmarin.org/find-a-meeting?type=secular&meeting=agnostics-and-freethinkers-1077">Community
                         Music Center - 741 30th Ave @ Balboa St</a></div>
                 </div>
                 <div class="row odd">
-                    <div class="col-sm-1 day">Monday</div>
-                    <div class="col-sm-3 meeting">Godless Heathens III</div>
-                    <div class="col-sm-1 time">7:00 PM</div>
-                    <div class="col-sm-6">
+                    <div class="day">Monday</div>
+                    <div class="meeting">Godless Heathens III</div>
+                    <div class="time">7:00 PM</div>
+                    <div class="location">
                         <a href="https://eastbayaa.org/meetings?type=secular&meeting=godless-heathens-iii">Kehilla
                         Community Synagogue - 1300 Grand Ave, Piedmont</a></div>
                 </div>
                 <div class="row even">
-                    <div class="col-sm-1 day">Tuesday</div>
-                    <div class="col-sm-3 meeting">
+                    <div class="day">Tuesday</div>
+                    <div class="meeting">
                         Atheist Agnostics & Others
                         <img src="images/Golden Gate Bridge1.svg">
                     </div>
-                    <div class="col-sm-1 time">7:00 PM</div>
-                    <div class="col-sm-4 left"><a href="https://zoom.us/j/372811010">https://zoom.us/j/372811010</a>
+                    <div class="time">7:00 PM</div>
+                    <div class="link"><a href="https://zoom.us/j/372811010">https://zoom.us/j/372811010</a>
                     </div>
-                    <div class="col-sm-1 passcode">919454</div>
-                    <div class="col-sm-1 meeting_no">372-811-010</div>
+                    <div class="passcode">919454</div>
+                    <div class="meeting_no">372-811-010</div>
+                </div>
+                <div class="row even">
+                    <div class="day">Wednesday</div>
+                    <div class="meeting">Freethinkers</div>
+                    <div class="time">5:30 PM</div>
+                    <div class="link"><a
+                        href="https://zoom.us/j/83500731303">https://zoom.us/j/83500731303</a><br>
+                    </div>
+                    <div class="passcode"></div>
+                    <div class="meeting_no">83500731303</div>
                 </div>
                 <div class="row odd">
-                    <div class="col-sm-1 day">Wednesday</div>
-                    <div class="col-sm-3 meeting">Godless Heathens II</div>
-                    <div class="col-sm-1 time">7:15 PM</div>
-                    <div class="col-sm-6">
+                    <div class="day">Wednesday</div>
+                    <div class="meeting">Godless Heathens II</div>
+                    <div class="time">7:15 PM</div>
+                    <div class="location">
                         <a href="https://eastbayaa.org/meetings?type=secular&meeting=godless-heathens-ii">Kehilla
                         Community Synagogue - 1300 Grand Ave, Piedmont</a></div>
                 </div>
                 <div class="row even">
-                    <div class="col-sm-1 day">Wednesday</div>
-                    <div class="col-sm-3 meeting">
+                    <div class="day">Wednesday</div>
+                    <div class="meeting">
                         40oz to Freedom (Online Version)<img src="images/Golden Gate Bridge1.svg">
                     </div>
-                    <div class="col-sm-1 time">9:30 PM</div>
-                    <div class="col-sm-4 left"><a
+                    <div class="time">9:30 PM</div>
+                    <div class="link"><a
                             href="https://zoom.us/j/94001670639?pwd=OHp2RU1zNkgzWDlsdUJXSndWdGx0dz09">https://zoom.us/j/94001670639</a>
                     </div>
-                    <div class="col-sm-1 passcode">436555</div>
-                    <div class="col-sm-1 meeting_no">94001670639</div>
+                    <div class="passcode">436555</div>
+                    <div class="meeting_no">94001670639</div>
                 </div>
                 <div class="row odd">
-                    <div class="col-sm-1 day">Thursday<br></div>
-                    <div class="col-sm-3 meeting">
+                    <div class="day">Thursday<br></div>
+                    <div class="meeting">
                         40oz to Freedom <img src="images/Golden Gate Bridge1.svg">
                         <br><b>NEW LOCATION!</b>
                     </div>
-                    <div class="col-sm-1 time">8:15 PM</div>
-                    <div class="col-sm-6 left"><b><a HREF="https://maps.app.goo.gl/AGvos6BuNTsZLf9u5">
+                    <div class="time">8:15 PM</div>
+                    <div class="location"><b><a HREF="https://maps.app.goo.gl/AGvos6BuNTsZLf9u5">
                         2868 Mission St, btw 24th & 25th Streets</a></b>
                         <br>"Mission Cultural Center for Latino Arts"
                         <br>Take BART to 24th Street, then walk south on Mission 1/2 block.
                     </div>
                 </div>
                 <div class="row even">
-                    <div class="col-sm-1 day">Friday</div>
-                    <div class="col-sm-3 meeting">
+                    <div class="day">Friday</div>
+                    <div class="meeting">
                         Atheists Agnostics & Others
                         <img src="images/Golden Gate Bridge1.svg">
                     </div>
-                    <div class="col-sm-1 time">7:30 PM</div>
-                    <div class="col-sm-4 left"><a href="https://zoom.us/j/250625220">https://zoom.us/j/250625220</a>
+                    <div class="time">7:30 PM</div>
+                    <div class="link"><a href="https://zoom.us/j/250625220">https://zoom.us/j/250625220</a>
                     </div>
-                    <div class="col-sm-1 passcode">818455</div>
-                    <div class="col-sm-1 meeting_no">250-625-220</div>
+                    <div class="passcode">818455</div>
+                    <div class="meeting_no">250-625-220</div>
                 </div>
                 <div class="row odd">
-                    <div class="col-sm-1 day">Saturday</div>
-                    <div class="col-sm-3 meeting">
+                    <div class="day">Saturday</div>
+                    <div class="meeting">
                         Atheists, Agnostics & Others
                         <img src="images/Golden Gate Bridge1.svg">
                     </div>
-                    <div class="col-sm-1 time">11:00 AM</div>
-                    <div class="col-sm-4 left"><a href="https://zoom.us/j/914770925">https://zoom.us/j/914770925</a>
+                    <div class="time">11:00 AM</div>
+                    <div class="link"><a href="https://zoom.us/j/914770925">https://zoom.us/j/914770925</a>
                     </div>
-                    <div class="col-sm-1 passcode">156220</div>
-                    <div class="col-sm-1 meeting_no">914-770-925</div>
+                    <div class="passcode">156220</div>
+                    <div class="meeting_no">914-770-925</div>
                 </div>
                 <div class="row even">
-                    <div class="footnote col-sm-12">
+                    <div class="footnote ">
                         <span>These are meetings of SF Freethinkers in AA.
                         The rest are Bay Area secular AA meetings that we hope you'll consider attending.</span>
                     </div>
