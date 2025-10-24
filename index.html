@@ -128,6 +128,10 @@
             font-size: 18px;
         }
 
+        .discontinued {
+            text-decoration: line-through;
+        }
+
         @media screen and (min-width: 15cm) {
             .resource-card {
                 margin: 0 29% 2rem 1%;
@@ -217,9 +221,9 @@
 
     <div class="row tab-menu">
         <ul class="nav nav-tabs">
-            <li class="nav-item"><a id="tab-meetings" class="nav-link" aria-current="page" href="#">Meetings</a></li>
-            <li class="nav-item"><a id="tab-resources" class="nav-link" aria-current="page" href="#">Resources</a></li>
-            <li class="nav-item"><a id="tab-about" class="nav-link" aria-current="page" href="#">About</a></li>
+            <li class="nav-item"><a id="tab-meetings" class="nav-link" aria-current="page" href="">Meetings</a></li>
+            <li class="nav-item"><a id="tab-resources" class="nav-link" aria-current="page" href="">Resources</a></li>
+            <li class="nav-item"><a id="tab-about" class="nav-link" aria-current="page" href="">About</a></li>
         </ul>
     </div>
 
@@ -437,6 +441,8 @@
                     <div class="col-sm-1 passcode">Passcode</div>
                     <div class="col-sm-1 meeting_no">Meeting #</div>
                 </div>
+
+                <!---------------------------------------------------------->
                 <div class="row odd">
                     <div class="col-sm-1 day">Sunday</div>
                     <div class="col-sm-3 meeting">
@@ -447,7 +453,19 @@
                     <div class="col-sm-1 passcode">219538</div>
                     <div class="col-sm-1 meeting_no">273-766-058</div>
                 </div>
+
+                <!---------------------------------------------------------->
                 <div class="row even">
+                    <div class="col-sm-1 day">Sunday</div>
+                    <div class="col-sm-3 meeting">Berkeley Fellowship In-Person Children of Chaos Secular AA</div>
+                    <div class="col-sm-1 time">5:30 PM</div>
+                    <div class="col-sm-6">
+                        <a href="https://eastbayaa.org/meetings#/berkeley-fellowship-in-person-children-of-chaos-secular-aa-attendance-confirmation-available?type=secular">Lutheran Church of the Cross</a><br/>
+1744 University Ave, Berkeley, CA 94703, USA</div>
+                </div>
+
+                <!---------------------------------------------------------->
+                <div class="row odd">
                     <div class="col-sm-1 day">Sunday</div>
                     <div class="col-sm-3 meeting">
                         Agnostics and Freethinkers <img class="sfft-mtg" alt="Meeting of SF Freethinkers in AA" src="images/Golden Gate Bridge1.svg">
@@ -457,7 +475,9 @@
                             href="https://aasfmarin.org/find-a-meeting?type=secular&meeting=agnostics-and-freethinkers-1077">Community
                         Music Center - 741 30th Ave @ Balboa St</a></div>
                 </div>
-                <div class="row odd">
+
+                <!---------------------------------------------------------->
+                <div class="row even">
                     <div class="col-sm-1 day">Monday</div>
                     <div class="col-sm-3 meeting">Godless Heathens III</div>
                     <div class="col-sm-1 time">7:00 PM</div>
@@ -465,7 +485,19 @@
                         <a href="https://eastbayaa.org/meetings?type=secular&meeting=godless-heathens-iii">Kehilla
                         Community Synagogue - 1300 Grand Ave, Piedmont</a></div>
                 </div>
-                <div class="row even">
+
+                <!----------------------------------------------------------
+                <div class="row odd">
+                    <div class="col-sm-1 day"> </div>
+                    <div class="col-sm-3 meeting"> </div>
+                    <div class="col-sm-1 time"> </div>
+                    <div class="col-sm-6">
+                        <a href=" "> </a></div>
+                </div>
+                -->
+
+                <!---------------------------------------------------------->
+                <div class="row odd">
                     <div class="col-sm-1 day">Wednesday</div>
                     <div class="col-sm-3 meeting">Godless Heathens II</div>
                     <div class="col-sm-1 time">7:15 PM</div>
@@ -473,7 +505,10 @@
                         <a href="https://eastbayaa.org/meetings?type=secular&meeting=godless-heathens-ii">Kehilla
                         Community Synagogue - 1300 Grand Ave, Piedmont</a></div>
                 </div>
-                <div class="row odd" id="meeting">
+                
+
+                <!---------------------------------------------------------->
+                <div class="row even" id="meeting">
                     <div class="col-sm-1 day">Thursday<br></div>
                     <div class="col-sm-3 meeting">
                         40oz to Freedom <img class="sfft-mtg" alt="Meeting of SF Freethinkers in AA" src="images/Golden Gate Bridge1.svg"><br>
@@ -485,19 +520,31 @@
                         (<a href="https://maps.app.goo.gl/nc4vmRzGnvhFQTC16">street view</a>).
                     </div>
                 </div>
-                <div class="row even">
-                    <div class="col-sm-1 day">Saturday</div>
-                    <div class="col-sm-3 meeting">
-                        Atheists, Agnostics & Others
+
+                <div class="row odd">
+                    <div class="col-sm-1 day discontinued">Saturday</div>
+                    <div class="col-sm-3 meeting discontinued">
+                        Atheists, Agnostics &amp; Others
                         <img class="sfft-mtg" alt="Meeting of SF Freethinkers in AA" src="images/Golden Gate Bridge1.svg">
                     </div>
-                    <div class="col-sm-1 time">11:00 AM</div>
-                    <div class="col-sm-4 left"><a href="https://zoom.us/j/914770925">https://zoom.us/j/914770925</a>
+                    <div class="col-sm-1 time discontinued">11:00 AM</div>
+                    <div class="col-sm-4 left">
+                      <em style="font-weight: bold; font-size: 18px; color: red; text-decoration: initial;">MEETING DISCONTINUED</em>
                     </div>
-                    <div class="col-sm-1 passcode">156220</div>
-                    <div class="col-sm-1 meeting_no">914-770-925</div>
+                    <div class="col-sm-1 passcode discontinued">&nbsp;</div>
+                    <div class="col-sm-1 meeting_no discontinued">&nbsp;</div>
                 </div>
+
+                <!---------------------------------------------------------->
                 <div class="row odd">
+                    <div class="col-sm-1 day"> </div>
+                    <div class="col-sm-3 meeting"> </div>
+                    <div class="col-sm-1 time"> </div>
+                    <div class="col-sm-6">
+                        <a href=" "> </a></div>
+                </div>
+
+                <div class="row even">
                     <div class="footnote col-sm-12">
                         <span>These are meetings of SF Freethinkers in AA.
                         The rest are Bay Area secular AA meetings that we hope you'll consider attending.</span>
